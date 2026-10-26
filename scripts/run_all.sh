@@ -10,8 +10,15 @@ cmake --preset "$PRESET" > /dev/null
 cmake --build --preset "$PRESET"
 
 # 멈춘 예제가 있어도 끝나게 20초 제한 (macOS엔 timeout이 없어 perl로 대신)
+# FreeRTOS POSIX 포트가 SIGALRM을 틱으로 쓰므로, 자식 프로세스에 SIGTERM을 보내는 방식
 run_limited() {
-    if command -v timeout > /dev/null; then timeout 20 "$@"; else perl -e 'alarm 20; exec @ARGV' "$@"; fi
+    if command -v timeout > /dev/null; then
+        timeout 20 "$@"
+    else
+        perl -e 'my $p = fork; if (!$p) { exec @ARGV; exit 127 }
+                 $SIG{ALRM} = sub { kill "TERM", $p; sleep 1; kill "KILL", $p };
+                 alarm 20; waitpid($p, 0); exit($? & 127 ? 124 : $? >> 8)' "$@"
+    fi
 }
 
 fail=0

@@ -61,7 +61,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | 부 | 장 | 폴더 | 상태 |
 |---|---|---|---|
 | 2부 동기화 | 레이스 컨디션과 임계 구역 | [chapters/race-condition](chapters/race-condition) | 완료 |
-| | 뮤텍스 | `chapters/mutex` | 예정 |
+| | 뮤텍스 | [chapters/mutex](chapters/mutex) | 완료 |
 | | 세마포어 | `chapters/semaphore` | 예정 |
 | | 데드락 | `chapters/deadlock` | 예정 |
 | | 우선순위 역전 | `chapters/priority-inversion` | 예정 |
