@@ -1,0 +1,13 @@
+# 사용법: docker compose run --rm dev
+# 이 폴더가 컨테이너 /work로 연결됨. 내 PC에서 고친 코드를 컨테이너에서 바로 빌드
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: embedded-os-examples:26.04
+    volumes:
+      - .:/work
+    working_dir: /work
+    stdin_open: true
+    tty: true
