@@ -20,7 +20,8 @@
 
 /* 메모리: heap_4 */
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
-#define configSUPPORT_STATIC_ALLOCATION         0
+#define configSUPPORT_STATIC_ALLOCATION         1   /* xTaskCreateStatic 등 (22장) */
+#define configKERNEL_PROVIDED_STATIC_MEMORY     1   /* idle · 타이머 태스크 메모리는 커널이 준비 */
 #define configTOTAL_HEAP_SIZE                   ( ( size_t ) ( 256 * 1024 ) )
 
 /* 동기화 · 통신 */
