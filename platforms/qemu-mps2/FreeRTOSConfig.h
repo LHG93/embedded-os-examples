@@ -45,7 +45,7 @@
 
 /* 훅 · 검사 (22 · 23장) */
 #define configUSE_IDLE_HOOK                     0
-#define configUSE_TICK_HOOK                     0
+#define configUSE_TICK_HOOK                     1   /* 틱마다 vApplicationTickHook (board.c는 빈 함수, 25장이 셈) */
 #define configUSE_MALLOC_FAILED_HOOK            1
 #define configCHECK_FOR_STACK_OVERFLOW          2
 

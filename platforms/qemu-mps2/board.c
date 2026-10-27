@@ -115,6 +115,11 @@ __attribute__((weak)) void vApplicationStackOverflowHook(TaskHandle_t task, char
     semihost_exit(4);
 }
 
+/* 틱마다 불림. 기본은 아무것도 안 함 (25장 예제가 덮어써서 틱 인터럽트 수를 셈) */
+__attribute__((weak)) void vApplicationTickHook(void)
+{
+}
+
 __attribute__((weak)) void vApplicationMallocFailedHook(void)
 {
     uart_puts("[힙 부족] pvPortMalloc 실패\n");
