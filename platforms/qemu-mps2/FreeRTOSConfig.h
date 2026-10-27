@@ -49,8 +49,13 @@
 #define configUSE_MALLOC_FAILED_HOOK            1
 #define configCHECK_FOR_STACK_OVERFLOW          2
 
+/* 태스크 목록 보기 (6장 vTaskListTasks) */
+#define configUSE_TRACE_FACILITY                1
+#define configUSE_STATS_FORMATTING_FUNCTIONS    1
+
 /* 사용할 API */
 #define INCLUDE_vTaskDelete                     1
+#define INCLUDE_eTaskGetState                   1
 #define INCLUDE_vTaskDelay                      1
 #define INCLUDE_xTaskDelayUntil                 1
 #define INCLUDE_vTaskSuspend                    1

@@ -17,6 +17,7 @@ add_subdirectory(third_party/FreeRTOS-Kernel)
 target_link_libraries(board PUBLIC freertos_kernel)
 
 # 장마다 폴더 하나. 순서는 README.md 목차 기준
+add_subdirectory(chapters/task)
 add_subdirectory(chapters/race-condition)
 add_subdirectory(chapters/mutex)
 add_subdirectory(chapters/semaphore)

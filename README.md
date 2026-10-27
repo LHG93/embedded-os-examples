@@ -70,6 +70,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 
 | 부 | 장 | 폴더 | 상태 |
 |---|---|---|---|
+| 1부 OS 기본기 | 태스크 · 스레드 · 프로세스 | [chapters/task](chapters/task) | 완료 |
 | 2부 동기화 | 레이스 컨디션과 임계 구역 | [chapters/race-condition](chapters/race-condition) | 완료 |
 | | 뮤텍스 | [chapters/mutex](chapters/mutex) | 완료 |
 | | 세마포어 | [chapters/semaphore](chapters/semaphore) | 완료 |
