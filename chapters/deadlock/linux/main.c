@@ -21,17 +21,20 @@
 
 enum { OPPOSITE, ORDERED, TRYLOCK };
 
+struct shop;
+
+struct staff {
+    struct shop *s;
+    int milk_first;         /* A는 우유 먼저, B는 시럽 먼저 */
+};
+
 struct shop {
     pthread_mutex_t milk, syrup;
     int mode;
     atomic_int done;        /* 끝난 직원 수 */
     atomic_long retries;    /* 놓고 다시 한 횟수 */
     long drinks;            /* 두 뮤텍스를 다 쥔 동안만 바꿈 */
-};
-
-struct staff {
-    struct shop *s;
-    int milk_first;         /* A는 우유 먼저, B는 시럽 먼저 */
+    struct staff a, b;      /* 실행마다 따로. 멈춘 스레드가 가리키는 것을 다음 실행이 덮지 않게 */
 };
 
 static void *staff(void *arg)
@@ -73,16 +76,15 @@ static void *staff(void *arg)
 /* 1초 안에 둘 다 끝나면 1, 아니면 0 (데드락) */
 static int run(struct shop *s, int mode)
 {
-    static struct staff a, b;
     pthread_t ta, tb;
 
     pthread_mutex_init(&s->milk, NULL);
     pthread_mutex_init(&s->syrup, NULL);
     s->mode = mode;
-    a = (struct staff){s, 1};
-    b = (struct staff){s, 0};
-    pthread_create(&ta, NULL, staff, &a);
-    pthread_create(&tb, NULL, staff, &b);
+    s->a = (struct staff){s, 1};
+    s->b = (struct staff){s, 0};
+    pthread_create(&ta, NULL, staff, &s->a);
+    pthread_create(&tb, NULL, staff, &s->b);
 
     for (int ms = 0; ms < 1000 && atomic_load(&s->done) < 2; ms++)
         usleep(1000);
