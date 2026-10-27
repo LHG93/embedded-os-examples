@@ -79,7 +79,8 @@ scripts/versions.sh      설치된 도구 버전 확인
 | 3부 통신 | 큐 | [chapters/queue](chapters/queue) | 완료 |
 | | 스트림 · 메시지 버퍼, 공유 메모리 | [chapters/stream-buffer](chapters/stream-buffer) | 완료 |
 | 4부 인터럽트와 시간 | 인터럽트 기초 | [chapters/interrupt](chapters/interrupt) | 완료 (FreeRTOS는 qemu-mps2) |
-| | ISR에서 태스크로 · 타이머 · 워치독 | | 예정 |
+| | ISR에서 태스크로 넘기기 | [chapters/isr-to-task](chapters/isr-to-task) | 완료 (FreeRTOS는 qemu-mps2) |
+| | 타이머 · 워치독 | | 예정 |
 
 폴더 이름엔 번호 안 붙임. 중간에 장이 추가돼도 링크 유지. 순서는 이 표 기준.
 
