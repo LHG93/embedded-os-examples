@@ -9,9 +9,10 @@ services:
     volumes:
       - .:/work
     working_dir: /work
-    # 14장 실시간 우선순위(SCHED_FIFO)용. 일반 사용자도 우선순위 99까지 쓸 수 있게
+    # 실시간 예제(14 · 24장)용. 일반 사용자도 우선순위 99까지, 메모리 잠금(mlockall)은 제한 없이
     ulimits:
       rtprio: 99
+      memlock: -1
     cap_add:
       - SYS_NICE
     stdin_open: true
