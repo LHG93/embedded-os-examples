@@ -64,7 +64,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | | 뮤텍스 | [chapters/mutex](chapters/mutex) | 완료 |
 | | 세마포어 | [chapters/semaphore](chapters/semaphore) | 완료 |
 | | 데드락 | [chapters/deadlock](chapters/deadlock) | 완료 |
-| | 우선순위 역전 | `chapters/priority-inversion` | 예정 |
+| | 우선순위 역전 | [chapters/priority-inversion](chapters/priority-inversion) | 완료 |
 | | 이벤트 | `chapters/event` | 예정 |
 | 3부 통신 | 큐 | `chapters/queue` | 예정 |
 | 4부 인터럽트와 시간 | 인터럽트 · ISR에서 태스크로 · 타이머 · 워치독 | | 예정 |
@@ -77,12 +77,12 @@ scripts/versions.sh      설치된 도구 버전 확인
 |---|---|
 | Ubuntu (도커 기본 이미지) | 26.04 LTS (`ubuntu:resolute-20261006`) |
 | gcc / cmake / ninja / make | 15.2.0 / 4.2.3 / 1.13.2 / 4.4.1 |
-| gdb / git / python3 | 17.1 / 2.53.0 / 3.14.3 |
+| gdb / git / python3 | 17.1 / 2.53.0 / 3.14.4 |
 | gcc-arm-none-eabi / newlib | 14.2.rel1 / 4.6.0 |
 | qemu-system-arm / openocd | 10.2.1 / 0.12.0 |
 | FreeRTOS-Kernel | V11.3.2 |
 
-내 환경 버전 확인: `./scripts/versions.sh`
+내 환경 버전 확인: `./scripts/versions.sh`. 2026-10-27 이 이미지(arm64)에서 전체 예제 통과 확인
 
 ## 라이선스
 

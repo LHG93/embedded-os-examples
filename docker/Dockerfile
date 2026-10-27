@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8
 
 # 확인한 버전 (2026-10, Ubuntu 26.04 저장소 기준)
-#   gcc 15.2.0 · cmake 4.2.3 · ninja 1.13.2 · make 4.4.1 · gdb 17.1 · git 2.53.0 · python3 3.14.3
+#   gcc 15.2.0 · cmake 4.2.3 · ninja 1.13.2 · make 4.4.1 · gdb 17.1 · git 2.53.0 · python3 3.14.4
 #   gcc-arm-none-eabi 14.2.rel1 · newlib 4.6.0 · qemu-system-arm 10.2.1 · openocd 0.12.0
 # 실제 설치된 버전은 컨테이너 안에서 scripts/versions.sh로 확인
 RUN apt-get update && apt-get install -y --no-install-recommends \

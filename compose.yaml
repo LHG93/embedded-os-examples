@@ -9,5 +9,10 @@ services:
     volumes:
       - .:/work
     working_dir: /work
+    # 14장 실시간 우선순위(SCHED_FIFO)용. 일반 사용자도 우선순위 99까지 쓸 수 있게
+    ulimits:
+      rtprio: 99
+    cap_add:
+      - SYS_NICE
     stdin_open: true
     tty: true
