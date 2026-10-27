@@ -46,6 +46,7 @@
 /* 사용할 API */
 #define INCLUDE_vTaskDelete                     1
 #define INCLUDE_vTaskDelay                      1
+#define INCLUDE_xTaskDelayUntil                 1
 #define INCLUDE_vTaskSuspend                    1
 #define INCLUDE_vTaskPrioritySet                1
 #define INCLUDE_uxTaskPriorityGet               1

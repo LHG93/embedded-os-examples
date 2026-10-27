@@ -65,7 +65,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | | 세마포어 | [chapters/semaphore](chapters/semaphore) | 완료 |
 | | 데드락 | [chapters/deadlock](chapters/deadlock) | 완료 |
 | | 우선순위 역전 | [chapters/priority-inversion](chapters/priority-inversion) | 완료 |
-| | 이벤트 | `chapters/event` | 예정 |
+| | 이벤트 | [chapters/event](chapters/event) | 완료 |
 | 3부 통신 | 큐 | `chapters/queue` | 예정 |
 | 4부 인터럽트와 시간 | 인터럽트 · ISR에서 태스크로 · 타이머 · 워치독 | | 예정 |
 
