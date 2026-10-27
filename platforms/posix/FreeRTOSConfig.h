@@ -51,6 +51,7 @@
 #define INCLUDE_uxTaskPriorityGet               1
 #define INCLUDE_xTaskGetSchedulerState          1
 #define INCLUDE_xTaskGetCurrentTaskHandle       1
+#define INCLUDE_xSemaphoreGetMutexHolder        1
 
 /* configASSERT 실패 시 파일 · 줄 번호 출력 후 정지 */
 void vAssertCalled( const char * file, unsigned long line );
