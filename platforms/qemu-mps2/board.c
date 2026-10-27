@@ -115,6 +115,11 @@ __attribute__((weak)) void vApplicationStackOverflowHook(TaskHandle_t task, char
     semihost_exit(4);
 }
 
+/* 태스크 전환마다 불림 (FreeRTOSConfig.h의 traceTASK_SWITCHED_IN). 기본은 아무것도 안 함 (27장이 덮어씀) */
+__attribute__((weak)) void board_trace_switch_in(void)
+{
+}
+
 /* 틱마다 불림. 기본은 아무것도 안 함 (25장 예제가 덮어써서 틱 인터럽트 수를 셈) */
 __attribute__((weak)) void vApplicationTickHook(void)
 {

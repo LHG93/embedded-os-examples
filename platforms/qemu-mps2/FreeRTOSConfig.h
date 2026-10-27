@@ -70,4 +70,8 @@
 void vAssertCalled( const char * file, unsigned long line );
 #define configASSERT( x )    if( ( x ) == 0 ) vAssertCalled( __FILE__, __LINE__ )
 
+/* 트레이스 훅 (27장): 태스크가 CPU를 받을 때마다 부름. board.c는 빈 함수, 27장 예제가 덮어써서 기록 */
+void board_trace_switch_in( void );
+#define traceTASK_SWITCHED_IN()    board_trace_switch_in()
+
 #endif

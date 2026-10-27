@@ -90,6 +90,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | | 스택 오버플로와 메모리 보호 | [chapters/stack-overflow](chapters/stack-overflow) | 완료 (FreeRTOS는 qemu-mps2) |
 | 6부 환경별 심화 | Linux 실시간 (PREEMPT_RT) | [chapters/linux-rt](chapters/linux-rt) | 완료 (Linux 전용) |
 | | FreeRTOS 내부 (설정, 포팅 레이어) | [chapters/freertos-internals](chapters/freertos-internals) | 완료 (qemu-mps2) |
+| 7부 디버깅 | 트레이싱 (트레이스 훅 · ftrace) | [chapters/tracing](chapters/tracing) | 완료 (FreeRTOS는 qemu-mps2) |
 
 폴더 이름엔 번호 안 붙임. 중간에 장이 추가돼도 링크 유지. 순서는 이 표 기준.
 
