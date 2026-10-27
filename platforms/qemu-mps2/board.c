@@ -39,6 +39,12 @@ static void semihost_exit(int code)
     for (;;) { }
 }
 
+void board_raw_log(const char *s)
+{
+    uart_puts(s);
+    uart_putc('\n');
+}
+
 void board_init(void)
 {
     UART0_BAUDDIV = 16;

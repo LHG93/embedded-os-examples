@@ -48,6 +48,9 @@
 
 #define CPU_HZ           25000000u
 
+/* 커널을 거치지 않고 UART에 바로 찍기. NMI · 폴트처럼 커널을 쓸 수 없는 곳에서 씀 (board.c) */
+void board_raw_log(const char *s);
+
 static inline void nvic_enable(int irq, uint8_t prio)
 {
     NVIC_IPR(irq) = prio;
