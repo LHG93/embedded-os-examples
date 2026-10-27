@@ -66,7 +66,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | | 데드락 | [chapters/deadlock](chapters/deadlock) | 완료 |
 | | 우선순위 역전 | [chapters/priority-inversion](chapters/priority-inversion) | 완료 |
 | | 이벤트 | [chapters/event](chapters/event) | 완료 |
-| 3부 통신 | 큐 | `chapters/queue` | 예정 |
+| 3부 통신 | 큐 | [chapters/queue](chapters/queue) | 완료 |
 | 4부 인터럽트와 시간 | 인터럽트 · ISR에서 태스크로 · 타이머 · 워치독 | | 예정 |
 
 폴더 이름엔 번호 안 붙임. 중간에 장이 추가돼도 링크 유지. 순서는 이 표 기준.
