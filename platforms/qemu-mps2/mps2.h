@@ -19,6 +19,12 @@
 #define TIMER0_IRQn      8
 #define TIMER1_IRQn      9
 
+/* CMSDK 듀얼 타이머 1: 여기서는 32비트 자유 실행 시계로 씀 (25MHz) */
+#define DUAL1_BASE       0x40002000u
+#define DUAL1_LOAD       REG(DUAL1_BASE + 0x00)
+#define DUAL1_VALUE      REG(DUAL1_BASE + 0x04)
+#define DUAL1_CTRL       REG(DUAL1_BASE + 0x08)  /* bit7 켜기, bit1 32비트 */
+
 /* CMSDK APB 워치독: 0이 되면 인터럽트(NMI), 한 번 더 0이 되면 리셋 */
 #define WDOG_BASE        0x40008000u
 #define WDOG_LOAD        REG(WDOG_BASE + 0x000)
@@ -30,7 +36,9 @@
 
 /* NVIC */
 #define NVIC_ISER        REG(0xE000E100)        /* 인터럽트 켜기 (IRQ 0~31) */
+#define NVIC_ICER        REG(0xE000E180)        /* 인터럽트 끄기 */
 #define NVIC_ISPR        REG(0xE000E200)        /* 인터럽트 걸어 두기 (소프트웨어로 발생) */
+#define NVIC_ICPR        REG(0xE000E280)        /* 걸려 있는 인터럽트 지우기 */
 #define NVIC_IPR(n)      (*(volatile uint8_t *)(0xE000E400 + (n)))  /* 우선순위, 작을수록 급함 */
 
 /* 시스템 */
@@ -43,7 +51,44 @@
 static inline void nvic_enable(int irq, uint8_t prio)
 {
     NVIC_IPR(irq) = prio;
+    NVIC_ICPR = 1u << irq;
     NVIC_ISER = 1u << irq;
+}
+
+static inline void nvic_disable(int irq)
+{
+    NVIC_ICER = 1u << irq;
+    NVIC_ICPR = 1u << irq;
+}
+
+/* 25MHz로 올라가는 시계 (듀얼 타이머 1을 자유 실행으로). 1us = 25 */
+static inline void clock_start(void)
+{
+    DUAL1_LOAD = 0xFFFFFFFFu;
+    DUAL1_CTRL = (1u << 7) | (1u << 1);
+}
+
+static inline uint32_t clock_now(void)
+{
+    return ~DUAL1_VALUE;
+}
+
+/* CMSDK 타이머를 period_us마다 인터럽트가 나게 켬 */
+static inline void timer_start(uint32_t base, int irq, uint32_t period_us, uint8_t prio)
+{
+    TIMER_CTRL(base) = 0;
+    TIMER_RELOAD(base) = period_us * (CPU_HZ / 1000000u) - 1u;
+    TIMER_VALUE(base) = TIMER_RELOAD(base);
+    TIMER_INTCLR(base) = 1u;
+    nvic_enable(irq, prio);
+    TIMER_CTRL(base) = (1u << 0) | (1u << 3);
+}
+
+static inline void timer_stop(uint32_t base, int irq)
+{
+    TIMER_CTRL(base) = 0;
+    TIMER_INTCLR(base) = 1u;
+    nvic_disable(irq);
 }
 
 #endif
