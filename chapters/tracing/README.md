@@ -7,32 +7,32 @@
 트레이스 훅 `traceTASK_SWITCHED_IN`(qemu-mps2 `FreeRTOSConfig.h` → board.c의 빈 `board_trace_switch_in`)을 예제가 덮어써서 25MHz 시계와 함께 기록. 타이머 ISR은 직접 표시를 남김
 
 ```text
-1. 기록 (처음 14개, 시간은 기록 시작부터, 전체 29개)
-        0.032ms  → sensor
-        0.410ms  → logger
-        3.419ms  → IDLE
-        4.931ms  ! TIMER0
-        4.971ms  → handler
-        5.181ms  → sensor
-        5.486ms  → logger
-        8.492ms  → IDLE
-        9.957ms  → sensor
-       10.263ms  → logger
-       11.938ms  ! TIMER0
-       11.943ms  → handler
-       12.152ms  → logger
-       13.270ms  → IDLE
+1. 기록 (처음 14개, 시간은 기록 시작부터, 전체 30개)
+        0.033ms  → sensor
+        0.392ms  → IDLE
+        0.774ms  → logger
+        3.781ms  → IDLE
+        5.000ms  ! TIMER0
+        5.033ms  → handler
+        5.242ms  → sensor
+        5.547ms  → logger
+        8.553ms  → IDLE
+       10.124ms  → sensor
+       10.429ms  → logger
+       12.034ms  ! TIMER0
+       12.038ms  → handler
+       12.246ms  → logger
 2. 타임라인 (0.5ms 한 칸 · 30ms, # = CPU 사용, | = 타이머 ISR)
-   handler  .........##............##............##............##.......
-   sensor   #.........##........#.........#........##.........#.........
-   logger   #######....#######..#######...#######...#######...#######...
-   IDLE     ......####.......####.....#####.....####......#####.....####
-   ISR      .........|.............|.............|.............|........
-3. CPU 사용 (30ms): handler 2.7% · sensor 6.3% · logger 58.7% · IDLE 32.2%
-   CPU를 받은 횟수: handler 4 · sensor 6 · logger 8, 타이머 ISR 4번, ISR → handler 최대 39us
+   handler  ..........#.............#............##.............#.......
+   sensor   #.........##........#.........#.........#........##.........
+   logger   .#######...#######..#######...#######...#######...#######...
+   IDLE     ##.....####......####.....#####.....#####.....####......####
+   ISR      ..........|.............|............|..............|.......
+3. CPU 사용 (30ms): handler 2.7% · sensor 6.2% · logger 58.7% · IDLE 32.1%
+   CPU를 받은 횟수: handler 4 · sensor 6 · logger 8, 타이머 ISR 4번, ISR → handler 최대 32us
 ```
 
-1의 처음 14줄과 2 · 3은 같은 실행이 아닐 수 있음(실행마다 몇 us씩 다름)
+시각은 실행마다 몇 us씩 다름
 
 ## Linux (ftrace)
 
