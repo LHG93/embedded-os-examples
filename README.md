@@ -83,6 +83,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | | 타이머와 알람 | [chapters/timer](chapters/timer) | 완료 |
 | | 워치독 | [chapters/watchdog](chapters/watchdog) | 완료 (FreeRTOS는 qemu-mps2) |
 | 5부 메모리와 안정성 | 스택과 힙 | [chapters/stack-heap](chapters/stack-heap) | 완료 (FreeRTOS는 qemu-mps2) |
+| | 스택 오버플로와 메모리 보호 | [chapters/stack-overflow](chapters/stack-overflow) | 완료 (FreeRTOS는 qemu-mps2) |
 
 폴더 이름엔 번호 안 붙임. 중간에 장이 추가돼도 링크 유지. 순서는 이 표 기준.
 

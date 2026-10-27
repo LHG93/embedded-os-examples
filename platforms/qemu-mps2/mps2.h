@@ -46,6 +46,16 @@
 #define SCB_MMFAR        REG(0xE000ED34)        /* 메모리 관리 폴트 주소 */
 #define SCB_SHCSR        REG(0xE000ED24)        /* 폴트 핸들러 켜기 */
 
+/* MPU (ARMv7-M PMSAv7, 영역 8개) */
+#define MPU_CTRL         REG(0xE000ED94)        /* bit0 켜기, bit2 PRIVDEFENA(나머지 주소는 기본 지도) */
+#define MPU_RNR          REG(0xE000ED98)        /* 고칠 영역 번호 */
+#define MPU_RBAR         REG(0xE000ED9C)        /* 시작 주소 (크기만큼 정렬) */
+#define MPU_RASR         REG(0xE000EDA0)        /* 크기 · 권한 · 켜기 */
+#define MPU_AP_NONE      (0u << 24)             /* 접근 금지 */
+#define MPU_AP_RO        (6u << 24)             /* 읽기만 */
+#define MPU_XN           (1u << 28)             /* 실행 금지 */
+#define MPU_SIZE(log2)   (((log2) - 1u) << 1)   /* 영역 크기 = 2^log2 바이트 */
+
 #define CPU_HZ           25000000u
 
 /* 커널을 거치지 않고 UART에 바로 찍기. NMI · 폴트처럼 커널을 쓸 수 없는 곳에서 씀 (board.c) */
