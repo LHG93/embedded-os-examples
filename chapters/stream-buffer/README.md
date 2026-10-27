@@ -31,4 +31,4 @@ cmake --preset posix && cmake --build --preset posix
 
 | posix | qemu-mps2 | stm32f4 | arduino-uno |
 |---|---|---|---|
-| ✓ | 예정 | 예정 | 예정 |
+| ✓ | ✓ | 예정 | 예정 |

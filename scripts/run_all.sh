@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 모든 예제 빌드 후 하나씩 실행, 전부 정상 종료(0)인지 확인
-# 사용법: ./scripts/run_all.sh [프리셋]   (기본값 posix)
+# 사용법: ./scripts/run_all.sh [프리셋]   (기본값 posix, 보드 흉내는 qemu-mps2)
 set -euo pipefail
 
 PRESET="${1:-posix}"
@@ -21,15 +21,24 @@ run_limited() {
     fi
 }
 
+# qemu-mps2는 .elf를 QEMU로 실행
+if [ "$PRESET" = "qemu-mps2" ]; then
+    list() { find "build/$PRESET/chapters" -type f -name '*.elf' | sort; }
+    runner=./scripts/run_qemu.sh
+else
+    list() { find "build/$PRESET/chapters" -type f -perm -u+x | sort; }
+    runner=
+fi
+
 fail=0
 while IFS= read -r exe; do
     echo "== ${exe#build/$PRESET/chapters/}"
-    if run_limited "$exe"; then
+    if run_limited $runner "$exe"; then
         echo "   통과"
     else
         echo "   실패 (종료 코드 $?)"
         fail=1
     fi
-done < <(find "build/$PRESET/chapters" -type f -perm -u+x | sort)
+done < <(list)
 
 exit $fail

@@ -4,7 +4,7 @@ project(embedded_os_examples C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# 빌드할 플랫폼. 지금은 posix(리눅스 · 도커 · macOS)만 있음
+# 빌드할 플랫폼: posix(리눅스 · 도커 · macOS), qemu-mps2(QEMU Cortex-M3)
 # 보드 추가: platforms/<이름>/ 폴더 + CMakePresets.json 프리셋 하나
 set(PLATFORM "posix" CACHE STRING "빌드할 플랫폼 (platforms/ 아래 폴더 이름)")
 if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/platforms/${PLATFORM}/CMakeLists.txt)

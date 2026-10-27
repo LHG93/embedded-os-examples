@@ -25,6 +25,14 @@ cmake --build --preset posix --target race-condition-freertos
 ./build/posix/chapters/race-condition/race-condition-freertos
 ```
 
+Cortex-M3 보드(QEMU)에서 실행:
+
+```bash
+cmake --preset qemu-mps2 && cmake --build --preset qemu-mps2
+./scripts/run_qemu.sh build/qemu-mps2/chapters/queue/queue-freertos.elf
+./scripts/run_all.sh qemu-mps2   # FreeRTOS 예제 전부
+```
+
 ## 도커 없이
 
 - 리눅스 · macOS + CMake 3.21 이상 + C 컴파일러(gcc 또는 clang)면 같은 명령으로 빌드됨
@@ -41,7 +49,9 @@ platforms/<플랫폼>/      보드마다 한 번만: FreeRTOSConfig.h, board.c, 
 include/board.h          장 예제와 보드 사이의 약속 (로그 출력, LED 등)
 third_party/             FreeRTOS-Kernel (git submodule)
 docker/Dockerfile        개발 환경 (버전 고정)
-scripts/run_all.sh       모든 예제 빌드 · 실행 확인
+scripts/run_all.sh       모든 예제 빌드 · 실행 확인 (프리셋 posix · qemu-mps2)
+scripts/run_qemu.sh      QEMU Cortex-M3에서 예제 하나 실행
+cmake/                   크로스 컴파일 툴체인 파일
 scripts/versions.sh      설치된 도구 버전 확인
 ```
 
@@ -50,7 +60,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | 플랫폼 | 상태 | 설명 |
 |---|---|---|
 | `posix` | 사용 가능 | 리눅스 · 도커 · macOS. PC에서 FreeRTOS 흉내 (태스크 = pthread, 싱글코어처럼 하나씩 실행) |
-| `qemu-mps2` | 예정 | QEMU로 Cortex-M3 보드 흉내. 보드 없이 인터럽트 · 틱 확인 |
+| `qemu-mps2` | 사용 가능 | QEMU `mps2-an385`로 Cortex-M3 보드 흉내. 진짜 NVIC · SysTick · 타이머 · 워치독 · MPU. 도커 이미지에 툴체인 · QEMU 포함 |
 | `stm32f4` | 예정 | STM32F4 보드 |
 | `arduino-uno` | 예정 | 아두이노 우노 (RAM 2KB) |
 

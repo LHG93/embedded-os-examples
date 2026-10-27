@@ -9,12 +9,26 @@
         "PLATFORM": "posix",
         "CMAKE_BUILD_TYPE": "Debug"
       }
+    },
+    {
+      "name": "qemu-mps2",
+      "displayName": "QEMU mps2-an385 (Cortex-M3) 보드 흉내",
+      "binaryDir": "${sourceDir}/build/qemu-mps2",
+      "toolchainFile": "${sourceDir}/cmake/arm-none-eabi.cmake",
+      "cacheVariables": {
+        "PLATFORM": "qemu-mps2",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
     }
   ],
   "buildPresets": [
     {
       "name": "posix",
       "configurePreset": "posix"
+    },
+    {
+      "name": "qemu-mps2",
+      "configurePreset": "qemu-mps2"
     }
   ]
 }

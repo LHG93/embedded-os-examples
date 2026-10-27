@@ -12,10 +12,16 @@
 
 보드가 있어야 의미 있는 장(인터럽트 우선순위, 워치독 등)은 장 README에 "보드 전용" 표시. `posix`엔 시그널 · 스레드로 흉내 낸 버전을 둠.
 
+## 있음
+
+| 이름 | 보드 | FreeRTOS 포트 | 비고 |
+|---|---|---|---|
+| `posix` | PC (리눅스 · 도커 · macOS) | `GCC_POSIX` | 태스크 = pthread |
+| `qemu-mps2` | QEMU `mps2-an385` (Cortex-M3, 25MHz) | `GCC_ARM_CM3` | 로그는 UART0, 종료는 세미호스팅, 주변장치 주소는 `mps2.h` |
+
 ## 예정
 
 | 이름 | 보드 | FreeRTOS 포트 |
 |---|---|---|
-| `qemu-mps2` | QEMU `mps2-an385` (Cortex-M3) | `GCC_ARM_CM3` |
 | `stm32f4` | STM32F4 계열 (예: STM32F4DISCOVERY, Nucleo-F446RE) | `GCC_ARM_CM4F` |
 | `arduino-uno` | 아두이노 우노 R3 (ATmega328P) | AVR 포트 (RAM 2KB라 태스크 수 적게) |
