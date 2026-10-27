@@ -92,6 +92,7 @@ scripts/versions.sh      설치된 도구 버전 확인
 | | FreeRTOS 내부 (설정, 포팅 레이어) | [chapters/freertos-internals](chapters/freertos-internals) | 완료 (qemu-mps2) |
 | 7부 디버깅 | 트레이싱 (트레이스 훅 · ftrace) | [chapters/tracing](chapters/tracing) | 완료 (FreeRTOS는 qemu-mps2) |
 | | 코드 리뷰 체크리스트 | [chapters/review](chapters/review) | 연습 파일 (빌드 · 실행 안 함) |
+| 8부 종합 | 센서 수집 → 처리 → 전송 파이프라인 | [chapters/project](chapters/project) | 완료 (FreeRTOS는 qemu-mps2) |
 
 폴더 이름엔 번호 안 붙임. 중간에 장이 추가돼도 링크 유지. 순서는 이 표 기준.
 
